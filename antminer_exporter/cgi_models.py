@@ -17,8 +17,8 @@ import dateutil.parser
 from prometheus_client import CollectorRegistry
 from prometheus_client.metrics import Info
 import requests
-from requests.auth import HTTPDigestAuth
 from exceptions import KernelLogError
+from base64 import b64encode
 import re
 from loguru import logger
 
@@ -34,7 +34,9 @@ class Miner:
 
     def get_request(self, route: str) -> requests.Response:
         url = f'http://{self.ip}/{route}'
-        response = requests.request('GET', url, auth=HTTPDigestAuth(self.cgi_user, self.cgi_password))
+        response = requests.request('GET', url, auth=(self.cgi_user, self.cgi_password))
+        if response.status_code == 401:
+            logger.exception(response.raise_for_status())
         return response
     
     def is_alive(self) -> bool:

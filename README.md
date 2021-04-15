@@ -32,6 +32,19 @@ pipenv shell
 
 Reload VS Code and set Python Interpretor for it
 
+### Run emulation of AntMiner
+
+* Docker required
+* Fill up `config.yaml` with your machine IP address
+
+Build and run image
+
+```bash
+docker build -f tests/antminer_emulator/Dockerfile -t antminer_exporter/antminer_emulator tests/antminer_emulator
+
+docker run -d -p 80:80 antminer_exporter/antminer_emulator
+```
+
 ## Metrics
 
 ### Check endpoint

@@ -23,9 +23,15 @@ if __name__ == '__main__':
     start_http_server(8000)
     # Generate some requests.
     while True:
-        config = confuse.Configuration('antminer_exporter', __name__)
-        config.set_file('antminer_exporter/config.yaml')
-        miners = config['miners'].get()
+        try:
+            config = confuse.Configuration('antminer_exporter', __name__)
+            config.set_file('antminer_exporter/config.yaml')
+            miners = config['miners'].get()
+        except confuse.exceptions.ConfigReadError as e:
+            logger.error('Can\'t find "config.yaml", is it exists?')
+            # logger.exception(e)
+            break
+        
         miner_list = []
 
         for miner in miners:  # Create miner objects

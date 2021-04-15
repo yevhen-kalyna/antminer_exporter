@@ -3,17 +3,17 @@
     {
       "url": "stratum+tcp://sha256.poolbinance.com:443",
       "user": "MINER.001",
-      "pass": "FOOBAR"
+      "pass": "123456"
     },
     {
       "url": "stratum+tcp://bs.poolbinance.com:3333",
       "user": "MINER.001",
-      "pass": "FOOBAR"
+      "pass": "123456"
     },
     {
       "url": "stratum+tcp://sha256.poolbinance.com:8888",
       "user": "MINER.001",
-      "pass": "FOOBAR"
+      "pass": "123456"
     }
   ],
   "api-listen": true,
