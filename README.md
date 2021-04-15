@@ -2,6 +2,36 @@
 
 Prometheus exporter for AntMiner
 
+## Development
+
+### Install dependencies
+
+System dependencies
+
+```bash
+sudo apt install python3.9 python3.9-dev -y
+```
+
+Virtual Environment
+
+```bash
+pip3 install pipenv
+```
+
+Install python dependencies
+
+```bash
+pipenv install --dev
+```
+
+Activate virtual environment
+
+```bash
+pipenv shell
+```
+
+Reload VS Code and set Python Interpretor for it
+
 ## Metrics
 
 ### Check endpoint
