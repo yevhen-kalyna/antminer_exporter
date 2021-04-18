@@ -65,3 +65,28 @@ antminer_uptime_seconds_sum 9000.0
 # TYPE antminer_uptime_seconds_created gauge
 antminer_uptime_seconds_created 1.6174733872678773e+09
 ```
+
+### Tests
+
+All functions and metrics should have tests for them.
+
+#### Tests example
+
+`tests/test_metrics.py`
+
+```python3
+import requests
+
+def get_metrics() -> requests.Response:
+    return requests.request('GET', 'http://localhost:8000')
+    
+def test_get_metrics():
+    assert get_metrics().status_code == 200
+
+class TestAntminerUptimeSeconds:
+    def test_antminer_uptime_seconds_count(self):
+        r = get_metrics().text.split('\n')
+        subs = 'antminer_uptime_seconds_count'
+        res = [i for i in r if subs in i]
+        assert subs in res[0]
+```
